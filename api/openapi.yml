@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: Ratz openapi spec
+  version: 0.0.1
+paths:
+  "/rate":
+    get:
+      description: "Retrieves rate of two currency"
+      parameters:
+      - description: First currency to exchange.
+        name: left
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Second currency to exchange.
+        name: right
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Period of time to currency
+        name: period
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/account"
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/error"
+          description: Error response.
+components:
+  schemas:
+    error:
+      type: string
